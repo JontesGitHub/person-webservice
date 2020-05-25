@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <h1 class="text-light" style="font-family: 'Pacifico', cursive;">Persons Websevice</h1>
+        <a class="btn btn-info" href="/person/add">Add new Person</a>
+    </nav>
+
+    <div id="center-div">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tr th:each="person : ${personList}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.firstname}"></td>
+                <td th:text="${person.lastname}"></td>
+                <td th:text="${person.email}"></td>
+                <td th:text="${person.dob.toString().substring(0,10)}"></td>
+                <td th:text="${person.gender}"></td>
+                <td>
+                    <a class="btn btn-info text-light" th:href="@{'/update/' + ${person.id}}">Update</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger text-light" th:href="@{'/delete/' + ${person.id}}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</body>
+</html>
